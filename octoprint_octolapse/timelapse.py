@@ -219,12 +219,7 @@ class Timelapse(object):
         # take a snapshot of the current settings for use in the Octolapse Tab
         self._current_profiles = self._settings.profiles.get_profiles_dict()
         # test the position request
-        if not self._test_position_request():
-            message = "Your printer does not support M114, and is incompatible with Octolapse."
-            if not self._settings.main_settings.cancel_print_on_startup_error:
-                message += " Continue on failure is enabled so your print will continue, but the timelapse has been " \
-                           "aborted."
-            raise TimelapseStartException(message, 'm114_not_supported')
+
         self._state = TimelapseState.WaitingForTrigger
         self.was_started = True
 
